@@ -13,7 +13,7 @@ toBase64 = (string) -> (new Buffer string).toString 'base64'
 module.exports = (reponame, username, password) ->
 
   isMainGithubIo = -> return reponame is "#{username}.github.io"
-  repoUrl = -> "git@github.com:#{username}/#{reponame}.git"
+  repoUrl = -> process.env.PUBLIC_URL || "git@github.com:#{username}/#{reponame}.git"
 
   branch = -> if isMainGithubIo username, reponame then 'master' else 'gh-pages'
 
